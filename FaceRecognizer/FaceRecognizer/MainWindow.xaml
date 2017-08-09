@@ -7,6 +7,16 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+        <Button Content="Take a Picture" 
+                Margin="634,28,319,575"
+                Click="TakeAPicture"/>
+        <Button Content="Retake" 
+                Margin="634,142,319,465"
+                Click="Retake"/>
+        <Label x:Name="ReturnText" 
+               Content="{Binding Path=Result}" 
+               Margin="10,597,680,42"
+               Height="50"/>
+        <Label Margin="10,0,680,97"/>
     </Grid>
 </Window>

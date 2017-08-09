@@ -20,9 +20,23 @@ namespace FaceRecognizer
     /// </summary>
     public partial class MainWindow : Window
     {
+        public string Result { get; set; }
         public MainWindow()
         {
+
             InitializeComponent();
+            Result = "TempText";
+            ReturnText.DataContext = this;
+        }
+
+        private void TakeAPicture(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Retake(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
