@@ -3,20 +3,58 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:FaceRecognizer"
+        xmlns:local="clr-namespace:FaceRecognizer.Converter"
+        xmlns:cap="http://schemas.sharpsoft.net/xaml"
+        xmlns:converters="clr-namespace:FaceRecognizer.Converter"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Face Camtastic" Height="600" Width="800">
+    <Window.Resources>
+        <converters:ScaleConverter x:Key="conv"/>
+    </Window.Resources>
     <Grid>
-        <Button Content="Take a Picture" 
-                Margin="634,28,319,575"
-                Click="TakeAPicture"/>
-        <Button Content="Retake" 
-                Margin="634,142,319,465"
-                Click="Retake"/>
-        <Label x:Name="ReturnText" 
-               Content="{Binding Path=Result}" 
-               Margin="10,597,680,42"
-               Height="50"/>
-        <Label Margin="10,0,680,97"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="WebcamColumn" Width="70*"/>
+            <ColumnDefinition x:Name="ControlColumn" Width="30*"/>
+        </Grid.ColumnDefinitions>
+        <HeaderedItemsControl Header="Framerate" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="55">
+            <Grid>
+                <Rectangle Fill="#55FF0000">
+                </Rectangle>
+                <TextBlock Text="{Binding ElementName=player, Path=Framerate}"/>
+            </Grid>
+        </HeaderedItemsControl>
+
+        <StackPanel Orientation="Vertical">
+            <Label x:Name="webcam"
+               Margin="10"
+               Grid.Column="0">
+                <cap:CapPlayer x:Name="player" RenderTransformOrigin="0.5,0.5" Margin="10">
+                    <cap:CapPlayer.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="180"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </cap:CapPlayer.RenderTransform>
+                </cap:CapPlayer>
+            </Label>
+            <Label x:Name="ReturnText" 
+                   Content="{Binding Path=Result}" 
+                   Margin="10"
+                   Height="50"
+                   Width="200"
+               Grid.Column="0"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+            <Button Content="TakePictureButton"
+                FontSize="20"
+                Margin="20"
+                Click="TakePictureButton_Click"/>
+            <Button Content="Take a Picture"
+                FontSize="25"
+                Margin="20"
+                Click="RetakeButton_Click"/>
+        </StackPanel>
     </Grid>
 </Window>
