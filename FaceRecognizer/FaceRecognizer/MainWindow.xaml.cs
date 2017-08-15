@@ -29,12 +29,12 @@ namespace FaceRecognizer
             ReturnText.DataContext = this;
         }
 
-        private void TakeAPicture(object sender, RoutedEventArgs e)
+        private void TakePictureButton_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void Retake(object sender, RoutedEventArgs e)
+        private void RetakeButton_Click(object sender, RoutedEventArgs e)
         {
 
         }
