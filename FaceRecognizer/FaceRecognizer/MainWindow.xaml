@@ -42,11 +42,11 @@
                Grid.Column="0"/>
         </StackPanel>
         <StackPanel Grid.Column="1" VerticalAlignment="Center">
-            <Button Content="TakePictureButton"
-                FontSize="20"
+            <Button x:Name="TakePictureButton" Content="Take picture"
+                FontSize="25"
                 Margin="20"
                 Click="TakePictureButton_Click"/>
-            <Button Content="Take a Picture"
+            <Button Content="Retake Picture"
                 FontSize="25"
                 Margin="20"
                 Click="RetakeButton_Click"/>
