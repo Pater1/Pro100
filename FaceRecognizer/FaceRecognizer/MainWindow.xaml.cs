@@ -32,7 +32,7 @@ namespace FaceRecognizer
 
         private void TakePictureButton_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void RetakeButton_Click(object sender, RoutedEventArgs e)
