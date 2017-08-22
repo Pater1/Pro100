@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheBrain", "TheBrain\TheBrain.csproj", "{672752E8-0933-446C-A7D8-B102892861C7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinky", "Pinky\Pinky.csproj", "{06B77DD0-276F-458C-9AF7-C17C9C16182A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinky_Testing", "Pinky\Pinky_Testing.csproj", "{06B77DD0-276F-458C-9AF7-C17C9C16182A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceRecognizer", "FaceRecognizer\FaceRecognizer.csproj", "{BB0C96C0-B0EF-43E5-87C6-43FA70999B31}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PythonHelloWordTest", "PythonClassifierApplication1\PythonHelloWordTest.pyproj", "{7793F987-616F-4B04-9798-20C0C15CC5C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PythonPlumber", "PythonPlumber\PythonPlumber.csproj", "{FCDFDC81-1BB7-42B3-B3F8-FB62DFC62C8A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{672752E8-0933-446C-A7D8-B102892861C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{672752E8-0933-446C-A7D8-B102892861C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{672752E8-0933-446C-A7D8-B102892861C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{672752E8-0933-446C-A7D8-B102892861C7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{06B77DD0-276F-458C-9AF7-C17C9C16182A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{06B77DD0-276F-458C-9AF7-C17C9C16182A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06B77DD0-276F-458C-9AF7-C17C9C16182A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -27,6 +25,12 @@ Global
 		{BB0C96C0-B0EF-43E5-87C6-43FA70999B31}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB0C96C0-B0EF-43E5-87C6-43FA70999B31}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB0C96C0-B0EF-43E5-87C6-43FA70999B31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7793F987-616F-4B04-9798-20C0C15CC5C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7793F987-616F-4B04-9798-20C0C15CC5C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCDFDC81-1BB7-42B3-B3F8-FB62DFC62C8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCDFDC81-1BB7-42B3-B3F8-FB62DFC62C8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCDFDC81-1BB7-42B3-B3F8-FB62DFC62C8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCDFDC81-1BB7-42B3-B3F8-FB62DFC62C8A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
