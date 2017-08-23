@@ -10,30 +10,25 @@ using System.Net;
 using TensorFlow;
 using Mono.Options;
 
-namespace TheBrain
-{
-    public class Brain
-    {
+namespace TheBrain {
+    public class Brain {
         private TFSession session = new TFSession();
         public TFGraph brain;
 
         static string dir, modelFile, labelsFile;
-      //  static bool jagged = true;
+        //  static bool jagged = true;
 
         //data_format = [batch, in_height, in_width, in_channels]
-        public Brain()
-        {
+        public Brain() {
             #region try 3
             brain = new TFGraph();
             byte[] model = File.ReadAllBytes("inceptionModel");
             #endregion
         }
 
-        public void Run()
-        {
+        public void Run() {
             List<string> files = new List<string>();
-            if (dir == null)
-            {
+            if (dir == null) {
                 dir = "/tmp";
             }
 
@@ -45,12 +40,10 @@ namespace TheBrain
 
             //ModelFiles(dir);
 
-            using (session = new TFSession(brain))
-            {
+            using (session = new TFSession(brain)) {
                 var labels = File.ReadAllLines(labelsFile);
 
-                foreach (var file in files)
-                {
+                foreach (var file in files) {
                     // Run inference on the image files
                     // For multiple images, session.Run() can be called in a loop (and
                     // concurrently). Alternatively, images can be batched since the model
@@ -66,11 +59,9 @@ namespace TheBrain
 
                     TFTensor result = output[0];
                     long[] rshape = result.Shape;
-                    if (result.NumDims != 2 || rshape[0] != 1)
-                    {
+                    if (result.NumDims != 2 || rshape[0] != 1) {
                         string shape = "";
-                        foreach (var d in rshape)
-                        {
+                        foreach (var d in rshape) {
                             shape += $"{d} ";
                         }
                         shape = shape.Trim();
@@ -86,28 +77,21 @@ namespace TheBrain
                     int bestIdx = 0;
                     float /*p = 0,*/ best = 0;
 
-                    if (jagged)
-                    {
+                    if (jagged) {
                         float[] probabilities = ((float[][])result.GetValue(jagged: true))[0];
-                        for (int i = 0; i < probabilities.Length; i++)
-                        {
-                            if (probabilities[i] > best)
-                            {
+                        for (int i = 0; i < probabilities.Length; i++) {
+                            if (probabilities[i] > best) {
                                 bestIdx = i;
                                 best = probabilities[i];
                             }
                         }
 
-                    }
-                    else
-                    {
+                    } else {
                         float[,] val = (float[,])result.GetValue(jagged: false);
 
                         // Result is [1,N], flatten array
-                        for (int i = 0; i < val.GetLength(1); i++)
-                        {
-                            if (val[0, i] > best)
-                            {
+                        for (int i = 0; i < val.GetLength(1); i++) {
+                            if (val[0, i] > best) {
                                 bestIdx = i;
                                 best = val[0, i];
                             }
@@ -120,12 +104,10 @@ namespace TheBrain
         }
 
         // Convert the image in filename to a Tensor suitable as input to the Inception model.
-        static TFTensor CreateTensorFromImageFile(string file)
-        {
+        static TFTensor CreateTensorFromImageFile(string file) {
             return CreateTensorFromImageFile(File.ReadAllBytes(file));
         }
-        static TFTensor CreateTensorFromImageFile(byte[] file)
-        {
+        static TFTensor CreateTensorFromImageFile(byte[] file) {
             // DecodeJpeg uses a scalar String-valued tensor as input.
             var tensor = TFTensor.CreateString(file);
 
@@ -136,8 +118,7 @@ namespace TheBrain
             ConstructGraphToNormalizeImage(out graph, out input, out output);
 
             // Execute that graph to normalize this one image
-            using (var session = new TFSession(graph))
-            {
+            using (var session = new TFSession(graph)) {
                 var normalized = session.Run(
                          inputs: new[] { input },
                          inputValues: new[] { tensor },
@@ -154,8 +135,7 @@ namespace TheBrain
         // This function constructs a graph of TensorFlow operations which takes as
         // input a JPEG-encoded string and returns a tensor suitable as input to the
         // inception model.
-        static void ConstructGraphToNormalizeImage(out TFGraph graph, out TFOutput input, out TFOutput output)
-        {
+        static void ConstructGraphToNormalizeImage(out TFGraph graph, out TFOutput input, out TFOutput output) {
             // Some constants specific to the pre-trained model at:
             // https://storage.googleapis.com/download.tensorflow.org/models/inception5h.zip
             //
@@ -186,8 +166,7 @@ namespace TheBrain
         //
         // Downloads the inception graph and labels
         //
-        static void ModelFiles(string dir)
-        {
+        static void ModelFiles(string dir) {
             string url = "https://storage.googleapis.com/download.tensorflow.org/models/inception5h.zip";
 
             modelFile = Path.Combine(dir, "tensorflow_inception_graph.pb");
