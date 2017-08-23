@@ -24,33 +24,35 @@ namespace FaceRecognizer
     {
         public string Result { get; set; }
         public double ProgressPercent { get; set; }
+        public string Done { get; set; }
+        public double Scalar = 502;
         public MainWindow()
         {
 
             InitializeComponent();
-            Name = "Ben";
-            Result = "You look like a: " + Name;
+            Name = "person";
+            Result = "You look like a " + Name;
             ReturnText.DataContext = this;
-            ProgressPercent = .0 * 502;
+            ProgressPercent = .0 * Scalar;
             ProgressBar.DataContext = this;
-
-
         }
 
 
 
         private void TakePictureButton_Click(object sender, RoutedEventArgs e)
+        
         {
-            for (int i = 0; i < 1; i++)
+            for (int i = 0; i < 101; i++)
             {
-                ProgressPercent += .01 * 502;
+                ProgressPercent += .01 * Scalar;
                 this.ProgressBar.Width = ProgressPercent;
             }
+            if ((ProgressPercent / Scalar) >= 1) { Done = "Done"; ProgressBar.Content = Done; }
+
         }
 
         private void RetakeButton_Click(object sender, RoutedEventArgs e)
         {
-
         }
     }
 }
