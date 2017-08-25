@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:cap="http://schemas.sharpsoft.net/xaml"
+        Icon="screenshots/triangle.png"
         mc:Ignorable="d"
         Title="Face Camtastic" Height="600" Width="800">
     <Grid>
@@ -19,17 +20,14 @@
             </Grid>
         </HeaderedItemsControl>
 
-        <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Vertical" Background="#DDD">
             <Label x:Name="webcam"
                Margin="10"
                Grid.Column="0">
                 <cap:CapPlayer x:Name="player" RenderTransformOrigin="0.5,0.5" Margin="10">
                     <cap:CapPlayer.RenderTransform>
                         <TransformGroup>
-                            <ScaleTransform/>
-                            <SkewTransform/>
-                            <RotateTransform Angle="180"/>
-                            <TranslateTransform/>
+                            <ScaleTransform ScaleY="-1"/>
                         </TransformGroup>
                     </cap:CapPlayer.RenderTransform>
                 </cap:CapPlayer>
@@ -38,20 +36,42 @@
                    Content="{Binding Path=Result}" 
                    Margin="10"
                    Height="50"
-                   Width="200"
+                   Width="250"
+                   Background="#AFA"
+                   BorderThickness="1"
+                   BorderBrush="Black"
+                   FontSize="20"
                Grid.Column="0"/>
+            <Label x:Name="ProgressBar"
+                Background="Green"
+                Margin="25,0,0,0"
+                Width="{Binding Path=ProgressPercent}"
+                HorizontalAlignment="Left"
+                Content="{Binding Path=Done}"
+                FontSize="10"
+                Height="25"
+                />
+                   <!---->
         </StackPanel>
-        <StackPanel Grid.Column="1" VerticalAlignment="Center">
-            <Button Content="TakePictureButton"
-                FontSize="20"
-                Margin="20"
-                Click="TakePictureButton_Click"/>
+        <StackPanel Grid.Column="1" VerticalAlignment="Top" Background="#FFF">
+            <Image Source = "screenshots/triangle.png" 
+            VerticalAlignment = "Top" Opacity = ".8" Height="120"
+                   Margin="10,10,10,0"/>
             <Button Content="Take a Picture"
                 FontSize="25"
                 Margin="20"
+                Background="#0D0"
+                Click="TakePictureButton_Click"/>
+            <Button Content="Retake The Picture"
+                FontSize="20"
+                Margin="20"
+                Background="#007FFF"
                 Click="RetakeButton_Click"/>
-            <Image Source="Screenshots/screenshot.jpg"
-                   MaxWidth="200"/>
+            <!-- <Image Source="Screenshots/screenshot.jpg"
+                   MaxWidth="200"/> -->
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" Background="#FFF">
+            
         </StackPanel>
     </Grid>
 </Window>

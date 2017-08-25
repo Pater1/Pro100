@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Threading;
 
 namespace FaceRecognizer
 {
@@ -22,22 +23,36 @@ namespace FaceRecognizer
     public partial class MainWindow : Window
     {
         public string Result { get; set; }
+        public double ProgressPercent { get; set; }
+        public string Done { get; set; }
+        public double Scalar = 502;
         public MainWindow()
         {
 
             InitializeComponent();
-            Result = "TempText";
+            Name = "person";
+            Result = "You look like a " + Name;
             ReturnText.DataContext = this;
+            ProgressPercent = .0 * Scalar;
+            ProgressBar.DataContext = this;
         }
 
+
+
         private void TakePictureButton_Click(object sender, RoutedEventArgs e)
+        
         {
-            
+            for (int i = 0; i < 101; i++)
+            {
+                ProgressPercent += .01 * Scalar;
+                this.ProgressBar.Width = ProgressPercent;
+            }
+            if ((ProgressPercent / Scalar) >= 1) { Done = "Done"; ProgressBar.Content = Done; }
+
         }
 
         private void RetakeButton_Click(object sender, RoutedEventArgs e)
         {
-
         }
     }
 }
